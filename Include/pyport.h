@@ -93,6 +93,21 @@ typedef PY_LONG_LONG		Py_intptr_t;
 
 #include <math.h> /* Moved here from the math section, before extern "C" */
 
+#ifndef PY_SSIZE_T_MIN
+typedef int Py_ssize_t;
+#define PY_SSIZE_T_MAX INT_MAX
+#define PY_SSIZE_T_MIN INT_MIN
+#endif
+
+ /* Macro kept for backward compatibility: use directly "z" in new code.
+  *
+  * PY_FORMAT_SIZE_T is a modifier for use in a printf format to convert an
+  * argument with the width of a size_t or Py_ssize_t: "z" (C99).
+  */
+#ifndef PY_FORMAT_SIZE_T
+#   define PY_FORMAT_SIZE_T "z"
+#endif
+
 /********************************************
  * WRAPPER FOR <time.h> and/or <sys/time.h> *
  ********************************************/

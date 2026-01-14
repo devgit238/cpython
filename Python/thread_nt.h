@@ -153,7 +153,7 @@ typedef struct {
 	HANDLE done;
 } callobj;
 
-static int
+static void
 bootstrap(void *call)
 {
 	callobj *obj = (callobj*)call;
@@ -164,7 +164,6 @@ bootstrap(void *call)
 	obj->id = PyThread_get_thread_ident();
 	ReleaseSemaphore(obj->done, 1, NULL);
 	func(arg);
-	return 0;
 }
 
 long
